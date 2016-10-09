@@ -3,10 +3,12 @@
  */
 var path = require("path"),
     fs = require("fs");
+jsEs6 = "/js/es6/";
 
 // 获得es6文件夹下的js文件
 var getJsFiles = function () {
-    var jsPath = path.resolve("es6");
+    var jsPath = path.resolve("src") + jsEs6;
+    // console.log(jsPath);
     var dirs = fs.readdirSync(jsPath);
     var matchs = [],
         files = {},
@@ -15,7 +17,7 @@ var getJsFiles = function () {
         matchs = item.match(/(.+)\.js$/);
         var _path = '';
         if (matchs) {
-            _path = path.resolve("es6", item);
+            _path = path.resolve("src" + jsEs6, item);
             files[matchs[1]] = _path;
             all.push(_path);
         }
@@ -26,7 +28,8 @@ var getJsFiles = function () {
 var config = {
     entry: getJsFiles(),
     output: {
-        path: "build",
+        // path: "build",
+        path: path.join(__dirname, "build" + jsEs6),
         filename: "[name].js"
     },
     module: {
