@@ -12,7 +12,7 @@ function testPromise(ready) {
     });
 }
 // 调用
-testPromise(false).then(function (success) {
+testPromise(true).then(function (success) {
     console.log(success);
 }, function (error) {
     console.log(error);
